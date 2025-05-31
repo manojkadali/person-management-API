@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Person Management System</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <h1>Person Management System</h1>
+    </header>
+    
+    <main>
+      <section class="person-form-container" id="formSection">
+        <div class="card">
+          <h2 id="formTitle">Add New Person</h2>
+          <form id="personForm">
+            <input type="hidden" id="personId">
+            
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required>
+              <span class="error-message" id="nameError"></span>
+            </div>
+            
+            <div class="form-group">
+              <label for="age">Age</label>
+              <input type="number" id="age" name="age" min="0" required>
+              <span class="error-message" id="ageError"></span>
+            </div>
+            
+            <div class="form-group">
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+              <span class="error-message" id="genderError"></span>
+            </div>
+            
+            <div class="form-group">
+              <label for="mobile">Mobile Number</label>
+              <input type="tel" id="mobile" name="mobile" required>
+              <span class="error-message" id="mobileError"></span>
+            </div>
+            
+            <div class="button-group">
+              <button type="submit" class="btn-primary" id="submitBtn">Add Person</button>
+              <button type="button" class="btn-secondary" id="cancelBtn">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </section>
+      
+      <section class="person-list-container">
+        <div class="card">
+          <div class="list-header">
+            <h2>People List</h2>
+            <button class="btn-primary" id="addNewBtn">
+              <i class="fas fa-plus"></i> Add New
+            </button>
+          </div>
+          
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search by name...">
+            <i class="fas fa-search"></i>
+          </div>
+          
+          <div class="table-container">
+            <table id="peopleTable">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                  <th>Mobile</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="peopleTableBody">
+                <!-- Data will be populated here -->
+              </tbody>
+            </table>
+          </div>
+          
+          <div id="emptyState" class="empty-state hidden">
+            <i class="fas fa-users"></i>
+            <p>No people found. Add a new person to get started.</p>
+          </div>
+          
+          <div id="loadingState" class="loading-state">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmationModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Confirm Delete</h3>
+          <button class="close-btn" id="closeModalBtn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete this person?</p>
+          <p class="warning">This action cannot be undone.</p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-danger" id="confirmDeleteBtn">Delete</button>
+          <button class="btn-secondary" id="cancelDeleteBtn">Cancel</button>
+        </div>
+      </div>
+    </div>
+    
+   
+    <div class="toast-container" id="toastContainer">
+      <!-- Toast notifications  -->
+    </div>
+  </div>
+  
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
